@@ -1,0 +1,5 @@
+1. For Windows
+Download redis for Windows from this link, https://github.com/MicrosoftArchive/redis/releases
+unzip and go to the redis path
+Run in cmd to startup the server: .\redis-server.exe redis.windows.conf
+Run in cmd to open shell terminal: .\redis-cli.exe

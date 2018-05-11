@@ -8,7 +8,6 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd ">
-
     <mvc:annotation-driven/>
     <context:component-scan base-package="lab.nice.echo">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -29,5 +28,14 @@
             </mvc:resolvers>
         </mvc:resource-chain>
     </mvc:resources>
+
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean id="sortResolver" class="org.springframework.data.web.SortArgumentResolver"/>
+            <bean id="pageableResolver" class="org.springframework.data.web.PageableArgumentResolver">
+                <constructor-arg ref="sortResolver"/>
+            </bean>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
 
 </beans>

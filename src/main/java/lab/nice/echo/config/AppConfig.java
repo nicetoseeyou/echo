@@ -2,20 +2,20 @@ package lab.nice.echo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 @Configuration
-@PropertySource(value = "classpath:app-config.properties", ignoreResourceNotFound = true)
-@EnableRedisRepositories
+@EnableRedisRepositories(basePackages = {"lab.nice.echo.repository"})
+@EnableSpringDataWebSupport
 public class AppConfig {
 
 	@Bean
-	public LettuceConnectionFactory lettuceConnectionFactory() {
+	public LettuceConnectionFactory connectionFactory() {
 		return new LettuceConnectionFactory(new RedisStandaloneConfiguration("localhost", 6379));
 	}
 
